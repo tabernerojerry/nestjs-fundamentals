@@ -3,16 +3,22 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
 
-async function bootstrap() {
+(async () => {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   const port = process.env.PORT || 3000;
 
   app.setGlobalPrefix(globalPrefix);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      // It will auto remove form data that is not exist in DTO
+      whitelist: true,
+      // It will throw an error if some form data value is not exist in DTO
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   await app.listen(port, () => {
     Logger.log(`Listening at http:localhost:${port}/${globalPrefix}`);
   });
-}
-bootstrap();
+})();
