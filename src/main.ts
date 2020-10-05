@@ -11,10 +11,12 @@ import { AppModule } from './app.module';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(
     new ValidationPipe({
-      // It will auto remove form data that is not exist in DTO
+      // It will auto remove payload that is not exist in DTO
       whitelist: true,
-      // It will throw an error if some form data value is not exist in DTO
+      // It will throw an error if some payload value is not exist in DTO
       forbidNonWhitelisted: true,
+      // It will auto transform payload to DTO instances (NOTE: it will affect app speed)
+      transform: true,
     }),
   );
 
