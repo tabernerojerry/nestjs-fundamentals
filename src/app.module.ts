@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { CoffeesModule } from './coffees/coffees.module';
 
 @Module({
@@ -15,11 +14,12 @@ import { CoffeesModule } from './coffees/coffees.module';
       password: 'qwerty123',
       database: 'postgres',
       autoLoadEntities: true,
-      // Make sure disable synchronize in production
+      // Make sure to disable synchronize in production
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
+// start 24 video
