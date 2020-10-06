@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('coffees')
-export class CoffeeEntity {
+@Entity()
+export class Coffee {
   @PrimaryGeneratedColumn()
-  readonly id: number;
+  id: number;
 
   @Column()
-  readonly name: string;
+  name: string;
 
   @Column()
-  readonly brand: string;
+  brand: string;
 
   @Column('json', { nullable: true })
-  readonly flavors: string[];
+  flavors: string[];
 }

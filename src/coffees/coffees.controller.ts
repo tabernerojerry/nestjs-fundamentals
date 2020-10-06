@@ -38,7 +38,7 @@ export class CoffeesController {
     @Param('id') id: string,
     @Body() updateCoffeeDto: UpdateCoffeeDto,
   ) {
-    return this.coffeeService.update(id, UpdateCoffeeDto);
+    return this.coffeeService.update(id, updateCoffeeDto);
   }
 
   @Delete(':id')
