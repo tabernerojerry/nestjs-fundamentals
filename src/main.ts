@@ -17,6 +17,9 @@ import { AppModule } from './app.module';
       forbidNonWhitelisted: true,
       // It will auto transform payload to DTO instances (NOTE: it will affect app speed)
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true, // It will auto transform types (Example: string to number)
+      },
     }),
   );
 
