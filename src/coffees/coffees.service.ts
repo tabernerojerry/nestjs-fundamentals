@@ -19,9 +19,10 @@ export class CoffeesService {
     private connection: Connection,
   ) {}
 
-  public findAll(paginationQuery: PaginationQueryDto): Promise<Coffee[]> {
+  public async findAll(paginationQuery: PaginationQueryDto): Promise<Coffee[]> {
     const { limit, offset } = paginationQuery;
-    return this.coffeeRepository.find({
+
+    return await this.coffeeRepository.find({
       relations: ['flavors'],
       skip: offset,
       take: limit,
