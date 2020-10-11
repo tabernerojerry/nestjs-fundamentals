@@ -5,6 +5,7 @@ import * as Joi from '@hapi/joi';
 
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import appConfig from './config/app.config';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
         DATABASE_PASSWORD: Joi.required(),
         DATABASE_NAME: Joi.required(),
       }),
+      load: [appConfig]
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
