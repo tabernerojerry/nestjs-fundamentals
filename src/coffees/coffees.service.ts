@@ -9,7 +9,7 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
-import coffeesConfig from './config/coffees.config';
+import { coffeesConfig } from './config/coffees.config';
 
 @Injectable()
 export class CoffeesService {

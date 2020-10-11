@@ -1,4 +1,4 @@
-export default () => ({
+export const appConfig = () => ({
   environment: process.env.NODE_ENV || 'development',
   database: {
     host: process.env.DATABASE_HOST,

@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
 // Namespace Configuration
-export default registerAs('coffees', () => ({
+export const coffeesConfig = registerAs('coffees', () => ({
   foo: 'bar',
 }));
