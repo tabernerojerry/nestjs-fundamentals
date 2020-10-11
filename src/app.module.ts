@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CoffeesModule } from './coffees/coffees.module';
+import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 
 @Module({
   imports: [
-    CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -17,6 +17,8 @@ import { CoffeesModule } from './coffees/coffees.module';
       // Make sure to disable synchronize in production
       synchronize: true,
     }),
+    CoffeesModule,
+    CoffeeRatingModule,
   ],
   controllers: [],
   providers: [],
