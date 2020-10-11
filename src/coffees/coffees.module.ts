@@ -7,10 +7,11 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
 import { ConfigModule } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forFeature(coffeesConfig), // Partial config registration
     TypeOrmModule.forFeature([Coffee, Flavor, Event])
   ],
   providers: [CoffeesService],
