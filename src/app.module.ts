@@ -6,6 +6,7 @@ import * as Joi from '@hapi/joi';
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { appConfig } from './config/app.config';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -25,15 +26,18 @@ import { appConfig } from './config/app.config';
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().port().required(),
+        DATABASE_PORT: Joi.number()
+          .port()
+          .required(),
         DATABASE_USER: Joi.required(),
         DATABASE_PASSWORD: Joi.required(),
         DATABASE_NAME: Joi.required(),
       }),
-      load: [appConfig]
+      load: [appConfig],
     }),
     CoffeesModule,
     CoffeeRatingModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
