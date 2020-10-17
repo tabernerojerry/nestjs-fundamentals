@@ -2,6 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 (async () => {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +23,7 @@ import { AppModule } from './app.module';
       },
     }),
   );
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(port, () => {
     Logger.log(`Listening at http:localhost:${port}/${globalPrefix}`);
