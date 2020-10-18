@@ -1,5 +1,6 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -30,6 +31,17 @@ import { WrapResponseInterceptor } from './common/interceptors/wrap-response.int
     new WrapResponseInterceptor(),
     new TimeoutInterceptor(),
   );
+
+  /**
+   * Swagger Documentation
+   */
+  const options = new DocumentBuilder()
+    .setTitle('StarCoffee')
+    .setDescription('Coffee Apps')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup(globalPrefix, app, document);
 
   await app.listen(port, () => {
     Logger.log(`Listening at http:localhost:${port}/${globalPrefix}`);
