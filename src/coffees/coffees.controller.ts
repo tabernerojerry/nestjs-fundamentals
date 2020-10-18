@@ -14,6 +14,7 @@ import { Public } from '../common/decorators/public.decorator';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { Protocol } from '../common/decorators/protocol.decorator';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -21,7 +22,11 @@ export class CoffeesController {
 
   @Public()
   @Get()
-  public findAll(@Query() paginationQuery: PaginationQueryDto) {
+  public findAll(
+    @Protocol('https') protocol: string,
+    @Query() paginationQuery: PaginationQueryDto,
+  ) {
+    console.log(protocol);
     return this.coffeeService.findAll(paginationQuery);
   }
 
