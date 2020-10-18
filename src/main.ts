@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
 
 (async () => {
@@ -25,7 +26,10 @@ import { WrapResponseInterceptor } from './common/interceptors/wrap-response.int
     }),
   );
   app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalInterceptors(new WrapResponseInterceptor());
+  app.useGlobalInterceptors(
+    new WrapResponseInterceptor(),
+    new TimeoutInterceptor(),
+  );
 
   await app.listen(port, () => {
     Logger.log(`Listening at http:localhost:${port}/${globalPrefix}`);
